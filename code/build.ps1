@@ -39,12 +39,10 @@ foreach ($CFile in $CFiles) {
     Write-Host "Compiling $($CFile.Name) -> $BaseName.exe"
     
     if ($shipping) {
-        # Shipping/Release build
-        $Result = & cl -nologo -O2 -W3 -TC "$SrcFile" -Fe:"$OutFile" 2>&1
+        $Result = & cl -nologo -O2 -W4 -Wall -TC "$SrcFile" -Fe:"$OutFile" 2>&1
     }
     else {
-        # Debug build
-        $Result = & cl -nologo -Zi -Od -W3 -TC "$SrcFile" -Fe:"$OutFile" 2>&1
+        $Result = & cl -nologo -Zi -Od -W4 -Wall -TC "$SrcFile" -Fe:"$OutFile" 2>&1
     }
     
     if ($LASTEXITCODE -eq 0) {
@@ -53,7 +51,27 @@ foreach ($CFile in $CFiles) {
     }
     else {
         Write-Host "  Failed" -ForegroundColor Red
-        Write-Host $Result
+        Write-Host ""
+        
+        if ($Result) {
+            $ErrorLines = $Result -split "`n" | Where-Object { $_.Trim() -ne "" }
+            foreach ($Line in $ErrorLines) {
+                $TrimmedLine = $Line.Trim()
+                if ($TrimmedLine -match "error\s+C\d+:") {
+                    Write-Host "    $TrimmedLine" -ForegroundColor Red
+                }
+                elseif ($TrimmedLine -match "warning\s+C\d+:") {
+                    Write-Host "    $TrimmedLine" -ForegroundColor Yellow
+                }
+                elseif ($TrimmedLine -match "note:") {
+                    Write-Host "    $TrimmedLine" -ForegroundColor Cyan
+                }
+                elseif ($TrimmedLine -ne "") {
+                    Write-Host "    $TrimmedLine" -ForegroundColor Gray
+                }
+            }
+        }
+        
         $FailureCount++
     }
     Write-Host ""
