@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "process",
+      "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "args": [
+        "-NoLogo",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}\\code\\build.ps1"
+      ],
+      "problemMatcher": ["$msCompile"],
+      // This group actually makes, that we can Ctrl-Shift-B(uild)
+      "group": { "kind": "build", "isDefault": true },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",      // or "silent" if you prefer
+        "panel": "dedicated",    // << reuses the same terminal for this task
+        "clear": true,           // clears between runs (optional)
+        "focus": false,          // don't steal focus (optional)
+        "showReuseMessage": false
+      }
+    }
+  ]
+}

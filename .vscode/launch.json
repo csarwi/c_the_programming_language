@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch app (MSVC)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}\\build\\app.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "preLaunchTask": "Build",
+      "visualizerFile": "${workspaceFolder}\\.vscode\\natvis.xml",
+      // Point the engine at your cache (C:\SYMBOLS) and MS symbol server
+      "symbolSearchPath": "srv*C:\\SYMBOLS*https://msdl.microsoft.com/download/symbols",
+      "environment": [
+        {
+          "name": "_NT_SYMBOL_PATH",
+          "value": "srv*C:\\SYMBOLS*https://msdl.microsoft.com/download/symbols"
+        }
+      ],
+      "requireExactSource": false,
+      // Map PDB source paths → your local CRT sources
+      "sourceFileMap": {
+        // vcstartup paths in MS PDBs → file actually lives in vcruntime on your machine
+        "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\",
+        // direct vcruntime mapping (catch-all)
+        "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcruntime\\": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\",
+        // general CRT source root (vcstartup/vcruntime/vccorlib/etc.)
+        "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\",
+        // UCRT from Windows Kits (your version)
+        "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\ucrt\\": "C:\\Program Files (x86)\\Windows Kits\\10\\Source\\10.0.26100.0\\ucrt\\"
+      }
+    }
+  ]
+}

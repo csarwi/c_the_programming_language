@@ -1,0 +1,42 @@
+# Build output
+build/
+build-folder/
+
+# Visual Studio files
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.sdf
+*.opensdf
+*.suo
+*.user
+*.vcxproj.user
+*.log
+*.tlog
+*.lastbuildstate
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Backup files
+*.bak
+*.swp
+*.swo

@@ -1,0 +1,9 @@
+{
+  "C_Cpp.debugShortcut": true,
+  "debug.console.acceptSuggestionOnEnter": "on",
+  "debug.console.fontSize": 14,
+  "debug.console.lineHeight": 22,
+  "debug.showBreakpointsInOverviewRuler": true,
+  "debug.inlineValues": true,
+  "editor.glyphMargin": true
+}
