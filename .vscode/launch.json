@@ -5,7 +5,7 @@
       "name": "Launch app (MSVC)",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${workspaceFolder}\\build\\app.exe",
+      "program": "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
       "args": [],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",

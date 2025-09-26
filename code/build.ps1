@@ -5,6 +5,15 @@ param(
 # Create build folder (next to /code) if it doesn't exist
 $Root = Split-Path $PSScriptRoot -Parent
 $Build = Join-Path $Root "build"
+
+# Clean build folder - remove all files
+if (Test-Path $Build) {
+    Write-Host "Cleaning build directory..."
+    Remove-Item -Path "$Build\*" -Recurse -Force -ErrorAction SilentlyContinue
+}
+else {
+    Write-Host "Creating build directory..."
+}
 New-Item -ItemType Directory -Force -Path $Build | Out-Null
 
 # Go into /build
